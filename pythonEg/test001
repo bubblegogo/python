@@ -1,0 +1,225 @@
+import time ,calendar;
+print('this is first python')
+
+#计算1-5的排列组合
+def groupnumber():
+    number =0;
+    for i in range(1,5):
+        for j in range(1,5):
+             for k in range(1,5):
+                if (i != j ) and(i != k ) and(j != k):
+                    print(i,j,k)
+                    number += 1
+    return number
+#rnumber = groupnumber();
+#print(rnumber)
+
+#计算奖金
+def getrewad(I):
+    rewards = 0;
+    if I <= 10:
+        rewards = I*0.1
+    elif  (I <= 20):
+        rewards = (I - 10)* 0.075 + getrewad(10)
+    else:
+        rewards = getrewad(20) + (I - 20) * 0.01
+
+    print(rewards)
+    return rewards
+#getrewad(50);
+
+#一个整数，它加上100后是一个完全平方数，再加上168又是一个完全平方数
+def mnnumber(m,n):
+    mn = (m+n)*(m-n)
+    if(mn == 168):
+        print(n*n-100)
+
+def intrange():
+    for i in range(1,85):
+        for j in range(1,85):
+            mnnumber(i,j)
+
+#intrange();
+
+#输入某年某月某日，判断这一天是这一年的第几天？
+#print( time.strftime("%Y-%m-%d %H:%M:%S %W", time.localtime()) )
+def getyyday(ymd):
+   print(time.strptime(ymd, '%Y-%m-%d')[7])
+
+#getyyday(time.strftime("%Y-%m-%d", time.localtime())) #获取当前格式的时间
+
+#输入三个整数x,y,z，请把这三个数由小到大输出。 主要考察 元祖以及 列表之间的转换
+def arysort(ary):
+    list = []
+    for a in ary:
+        list.append(a)
+    list.sort()
+    print(list)
+
+ary = (1, 8, 2, 5 )
+#arysort(ary)
+
+#斐波那契数列（Fibonacci sequence），又称黄金分割数列，指的是这样一个数列：0、1、1、2、3、5、8、13、21、34、……
+#F0 = 0     (n=0)
+#F1 = 1    (n=1)
+#Fn = F[n-1]+ F[n-2](n=>2)
+
+
+#使用 time 模块的 sleep() 函数。 以及 字典 循环
+def timesleep():
+    objd = {'a':'charA','b':"charB"}
+    for key,value in objd.items():  # 或者 for key,value in dict.items(objd)
+        print(key,value)
+        time.sleep(1)
+
+#timesleep()
+
+#字符串 常用的方法
+str = "87 25 36 89"
+list = str.split(' ')
+
+#判断101-200之间有多少个素数，并输出所有素数。
+
+from math import sqrt
+def primenumber():
+    ll = []
+    for n in range(101,200):
+        k  = int(sqrt(n)+1)
+        for s in range(2,k):
+            if n%s == 0:
+                break
+            else:
+                if n not in ll:
+                    ll.append(n)
+
+    print(ll)
+
+#primenumber()
+
+#打印出所有的"水仙花数"，所谓"水仙花数"是指一个三位数，其各位数字立方和等于该数本身。例如：153是一个"水仙花数"，因为153=1的三次方＋5的三次方＋3的三次方。
+# 一个三位数故 从 100 - 999 也可以通过 三层 for循环
+#print(range(100,999))
+def prdaffod():
+    for i in range(100,1000):
+        x = int( i / 100)
+        y = int( i / 10 % 10)
+        z = int( i %10 )
+
+        if i == x**3 + y**3 + z**3:
+            print(i)
+
+#prdaffod()
+
+def reducenum(n):
+  l = []
+  while n > 1:
+      for i in range(2,n+1):
+          if n % i == 0:
+              n = int( n / i)
+              l.append(i)
+              break
+
+  print(l)
+#reducenum(90)
+
+
+#输出指定给出的日期格式
+import datetime
+def inittime():
+    dty = datetime.date.today()
+    print(dty)
+    print(dty.strftime('%d/%m/%Y'))
+
+#inittime()
+
+
+#输入一行字符，分别统计出其中英文字母、空格、数字和其它字符的个数。
+
+def countchart():
+    str  = "w e 528ik = *7 iower"
+    len(str)
+    letters =0
+    space =0
+    digit = 0
+    others = 0
+    for l in range(0,len(str)+1):
+        s = str[l:l+1]
+        if s.isalpha():
+            letters += 1
+        elif s.isspace():
+            space += 1
+        elif s.isdigit():
+            digit += 1
+        else:
+            others += 1
+
+    print('letters=',letters,'space =',space,'digit=',digit,'others =',others)
+
+#countchart()
+
+#一球从100米高度自由落下，每次落地后反跳回原高度的一半；再落下，求它在第10次落地时，共经过多少米？第10次反弹多高？
+
+def jumpball(tim):
+    tour = []
+    heig = 100.0
+    height = []
+    for i in range(1,tim+1):
+        if i == 1:
+            tour.append(heig)
+        else:
+            tour.append(2*heig)
+        heig = heig/2
+        height.append(heig)
+    print('zonggaodu',sum(tour))
+    print('10ci gaodu',height[-1])
+
+#jumpball(10)
+
+
+
+#两个乒乓球队进行比赛，各出三人。甲队为a,b,c三人，乙队为x,y,z三人。已抽签决定比赛名单。有人向队员打听比赛的名单。a说他不和x比，c说他不和x,z比，请编程序找出三队赛手的名单
+#ord 参数是ascii 返回一个十进制的数
+#chr 返回 ascii 或者 unicode
+#print(ord('A'))
+#print(range(ord('x'),ord('z') + 1))
+
+def pingpang():
+    ary = ['x','y','z']
+    for a in ary:
+        for b in ary:
+            for c in ary:
+                if(a != b) and (b != c) and (a != c) and (a != 'x') and ( c != 'x') and(c != 'z'):
+                    print(a,b,c)
+#pingpang()
+
+#利用递归来求职
+def digui(num):
+    sum = 0
+    if num == 0:
+        sum = 1
+    else:
+        sum = digui(num-1)*num
+    return sum
+
+def diguifor(num):
+    for i in range(num):
+        print("%d! = %d" %( i ,digui(i) ) )
+#diguifor(10)
+
+def dgfun(age,rank):
+    if rank == 1:
+        return age
+    else:
+        return dgfun(age+2,rank - 1)
+
+#print(dgfun(10,5))
+
+#回文数 逆序存放
+a = "123454321"
+b = a[::-1]
+print(b)
+
+#表示模块的一个名称的一个系统变量
+if __name__ == '__main__':
+    print('1223')
+    #print(dgfun(10, 5))
